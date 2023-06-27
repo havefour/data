@@ -1,0 +1,343 @@
+drop table if exists sw_bi.pim_information;
+CREATE TABLE sw_bi.pim_information 
+( `sku_uid`  VARCHAR(50) primary key                                             
+  ,`brand_name` VARCHAR(50)
+  ,`spu_uid` VARCHAR(50)
+  ,`spu_name_cn` VARCHAR(255)
+  ,`spu_season_related` tinyint(1) DEFAULT NULL
+  ,`spu_season_started_from` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL
+  ,`spu_season_ended_at` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL
+  ,`spu_ace` char(1) COLLATE utf8mb4_bin DEFAULT NULL
+  ,`spu_time_related` char(1) COLLATE utf8mb4_bin DEFAULT NULL
+  ,`spu_new_product_failed` char(1) COLLATE utf8mb4_bin DEFAULT NULL
+  ,`spu_life_stage` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL
+  ,`spu_first_sale_date` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL
+  ,`spu_sale_days` int(11) DEFAULT NULL
+  ,`spu_incentive_factor` double DEFAULT NULL
+	,`special_clearing`VARCHAR(255)
+  ,`sku_name_cn` VARCHAR(255)
+	,`sku_source` varchar(16) COLLATE utf8mb4_bin NOT NULL  COMMENT '产品归属'
+  ,`market_channel` VARCHAR(50)
+  ,`reference_quote_amount` int
+  ,`toolant_quotation_factor` decimal(6,2)
+  ,`clearance_level` VARCHAR(16)
+	,`time_related` VARCHAR(100)
+	,`product_operation_status` VARCHAR(100)
+	,`crucial_tags` VARCHAR(100)
+  ,`ean_code` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL
+  ,`product_type` VARCHAR(50)
+  ,`operator_poc` VARCHAR(255)
+	,`sub_operator_poc` VARCHAR(255)
+	,`full_operator_poc` VARCHAR(255)
+	,`sub_start_day` datetime
+	,`sub_end_day` VARCHAR(255)
+  ,`product_poc` VARCHAR(255)
+  ,`designer_poc`  VARCHAR(255)
+  ,`category` VARCHAR(100)
+  ,`subcategory` VARCHAR(100)
+  ,`product_line` VARCHAR(100)
+  ,`product_series` VARCHAR(100)
+  ,`country_code` VARCHAR(20)
+  ,`unit_name` VARCHAR(10)
+  ,`material`  VARCHAR(255)    
+  ,`supply_partner_name` VARCHAR(255)
+  ,`erp_group_ids` int
+  ,`supply_name` VARCHAR(255)
+  ,`short_name` VARCHAR(32)
+  ,`pessimistic_delivery_cycle_in_days` int
+  ,`supplier_address` VARCHAR(255)
+  ,`short_code` varchar(32)
+  ,`supplier_poc_id` int
+  ,`contact_name` VARCHAR(100)
+  ,`phone` varchar(20)
+  ,`wechat` varchar(100)
+  ,`position` varchar(20)
+  ,`packing_length_m` varchar(20)
+  ,`packing_width_m` decimal(10,5)
+  ,`packing_height_m` decimal(10,5)
+  ,`packing_weight_kg` decimal(10,5)
+  ,`carton_length_m` decimal(10,5)
+  ,`carton_width_m` decimal(10,5)
+  ,`carton_height_m` decimal(10,5)
+  ,`carton_weight_kg` decimal(10,5)
+  ,`pics_in_carton` int
+  ,`variant_id` VARCHAR(60)
+	,`shopify_updated_at` datetime DEFAULT NULL
+  ,`created_time` datetime DEFAULT CURRENT_TIMESTAMP
+  ,`sku_status` VARCHAR(32)
+	,`first_Product_Poc` VARCHAR(100)
+	,`season_related` int
+	,`sku_updated_time` datetime
+  ,`sku_created_time` datetime
+	,`rec_updated_time` datetime
+	,`operator_main_starfish` VARCHAR(100)
+	,`operator_sub_starfish` VARCHAR(100)
+	,`operator_perf_poc` VARCHAR(100)
+	,`product_main_starfish` VARCHAR(100)
+	,`product_sub_starfish` VARCHAR(100)
+	,`product_perf_poc` VARCHAR(100)
+	,`handover_date` datetime
+	,`operator_main_starfish_status` VARCHAR(100) 
+	,`operator_sub_starfish_status` VARCHAR(100) 
+	,`operator_perf_poc_status` VARCHAR(100) 
+	,`product_main_starfish_status` VARCHAR(100) 
+	,`product_sub_starfish_status` VARCHAR(100)
+	,`product_perf_poc_status` VARCHAR(100) 
+	,`operator_poc_status` VARCHAR(100) 
+	,`product_poc_status` VARCHAR(100) 
+	,`operator_handover_date`	datetime
+	,`product_handover_date` datetime
+	
+	) ;
+	
+	INSERT INTO sw_bi.pim_information(
+	sku_uid
+	,brand_name
+	,spu_uid
+	,spu_name_cn
+	,spu_season_related -- 季节属性
+	,spu_season_started_from  -- 季节开售日期
+	,spu_season_ended_at -- 季节结束日期
+	,spu_ace -- 王牌产品
+	,spu_time_related -- 强时间属性
+	,spu_new_product_failed -- 新项目暂停
+	,spu_life_stage -- 生命周期
+	,spu_first_sale_date-- 开售日期
+	,spu_sale_days-- 开售时长
+	,spu_incentive_factor -- 激励系数
+	,special_clearing
+	,sku_name_cn
+	,sku_source
+	,market_channel
+	,reference_quote_amount
+	,toolant_quotation_factor
+	,clearance_level
+	,time_related
+	,product_operation_status
+	,crucial_tags
+	,ean_code
+	,product_type
+	,operator_poc
+	,sub_operator_poc
+	,full_operator_poc
+	,sub_start_day
+	,sub_end_day
+	,product_poc
+	,designer_poc
+	,category
+	,subcategory
+	,product_line
+	,product_series
+	,country_code
+	,unit_name
+	,material
+	,supply_partner_name
+	,erp_group_ids
+	,supply_name
+	,short_name
+	,pessimistic_delivery_cycle_in_days
+	,supplier_address
+	,short_code
+	,supplier_poc_id
+	,contact_name
+	,phone
+	,wechat
+	,position
+	,packing_length_m
+	,packing_width_m
+	,packing_height_m
+	,packing_weight_kg
+	,carton_length_m
+	,carton_width_m
+	,carton_height_m
+	,carton_weight_kg
+	,pics_in_carton
+	,variant_id
+	,shopify_updated_at
+	,created_time
+	,sku_status
+	,first_Product_Poc
+	,season_related
+	,sku_updated_time
+	,sku_created_time
+	,rec_updated_time
+	,`operator_main_starfish` -- 运营主星
+	,`operator_sub_starfish` -- 运营子星
+	,`operator_perf_poc` -- 运营绩效负责人
+	,`product_main_starfish` -- 产品主星
+	,`product_sub_starfish` -- 产品子星
+	,`product_perf_poc` -- 产品绩效负责人
+	,`handover_date` -- 记录时间
+	,`operator_main_starfish_status` -- 运营主星职员状态
+	,`operator_sub_starfish_status` -- 运营子星职员状态
+	,`operator_perf_poc_status` -- 运营绩效负责人职员状态
+	,`product_main_starfish_status` -- 产品主星职员状态
+	,`product_sub_starfish_status` -- 产品子星职员状态
+	,`product_perf_poc_status` -- 产品绩效负责人职员状态
+	,operator_poc_status -- 运营POC职员状态
+	,product_poc_status -- 	产品POC职员状态
+	,operator_handover_date
+	,product_handover_date
+ )
+--
+with poc_information as 
+	(SELECT
+			a.*
+			from 
+				(SELECT 
+				spuId,	
+				operatorMainStarfish,
+				operatorSubStarfish,
+				operatorPerfPoc,
+				productMainStarfish,
+				productSubStarfish,
+				productPerfPoc,
+				handoverDate,
+				operatorHandoverDate,
+				productHandoverDate,
+				row_number() over(PARTITION by spuId ORDER BY handoverDate DESC) as spu_time_tag
+				from 
+				sw_information_system.spu_perf_poc_record
+		)a 
+			where a.spu_time_tag =1)
+			
+select
+  a.skuId as sku_uid 
+  ,brandName as brand_name
+  ,a.spuId as spu_uid
+  ,b.name as spu_name_cn 
+	,b.seasonRelated as spu_season_related -- 季节属性
+	,b.seasonStartedFrom as spu_season_started_from  -- 季节开售日期
+	,b.seasonEndedAt as spu_season_ended_at -- 季节结束日期
+	,b.ace as spu_ace -- 王牌产品
+	,b.timeRelated as spu_timerelated -- 强时间属性
+	,b.newProductFailed as spu_new_product_failed -- 新项目暂停
+	,b.lifeStage as spu_life_stage -- 生命周期
+	,b.firstSaleDate as  spu_first_sale_date-- 开售日期
+	,b.saleDays as  spu_sale_days-- 开售时长
+	,b.incentiveFactor as  spu_incentive_factor -- 激励系数
+	,a.specialClearing as special_clearing
+  ,a.cnName as sku_name_cn 
+	,CASE  WHEN skuSource is NULL THEN "自有"
+	ELSE skuSource END as sku_source
+  ,marketChannel as market_channel 
+	,referenceQuoteAmountInYuan as  reference_quote_amount 
+	,toolantQuotationFactor as toolant_quotation_factor 
+	,clearanceLevel as  clearance_level   
+	,a.timeRelated as time_related
+	,productOperationStatus as  product_operation_status
+	,crucialTags as  crucial_tags
+	,eanCode as  ean_code 
+  ,kind as product_type 
+  ,b.operatorPoc as operator_poc 
+	,CASE WHEN f.subOperationPoc is not null  THEN f.subOperationPoc
+	ELSE b.operatorPoc End as sub_operator_poc 
+	,CONCAT_WS(",",b.operatorPoc,f.subOperationPoc) as full_operator_poc 
+	,date(f.`start`) as sub_start_day
+	,f.`end` as sub_end_day
+  ,b.productPoc  as product_poc 
+  ,b.designerPoc as designer_poc 
+  ,categoryName as category 
+  ,subcategory 
+  ,productLine as product_line 
+  ,productSeries as product_series 
+  ,countryCode as country_code
+  ,unitName as unit_name  
+  ,material   
+  ,supplyPartnerName as supply_partner_name  
+	,1 as erp_group_ids 
+	,mainSupplierName as supply_name   
+	,c.shortName as  short_name	
+	,productDeliveryDays as product_delivery_days	
+	,c.address as supplier_address 
+	,c.shortCode as short_code 
+	,1 as supplier_poc_id 
+	,e.contactName as contact_name 
+	,e.contactPhone as phone	
+	,e.contactWechat as wechat	
+	,e.contactPosition as position 
+	,d.packingLengthM as  packing_length_m	
+	,d.packingWidthM as packing_width_m 
+	,d.packingHeightM as packing_height_m	
+	,d.packingWeightKg as packing_weight_kg 
+	,d.cartonLengthM as carton_length_m 
+	,d.cartonWidthM as carton_width_m 
+	,d.cartonHeightM as carton_height_m 
+	,d.cartonWeightKg as carton_weight_kg 
+	,d.picsInCarton as pics_in_carton 
+	,variant_id 
+	,shopify_updated_at
+	,k.created_time
+	,k.status as sku_status 
+	,firstProductPoc as first_Product_Poc
+	,seasonrelated as season_related
+	,current_timestamp as sku_updated_time
+	,a.createdAt as sku_created_time
+	,current_timestamp as rec_updated_time
+	,g.operatorMainStarfish
+	,g.operatorSubStarfish
+	,g.operatorPerfPoc
+	,g.productMainStarfish
+	,g.productSubStarfish
+	,g.productPerfPoc
+	,g.handoverDate
+	,h.`status` as operatorMainStarfish_status
+	,i.`status` as operatorSubStarfish_status
+	,j.`status` as operatorPerfPoc_status
+	,p.`status` as productMainStarfish_status
+	,l.`status` as productSubStarfish_status
+	,m.`status` as productPerfPoc_status
+	,n.`status` as operatorPoc_status
+	,o.`status` as productPoc_status
+	,g.operatorHandoverDate as operator_handover_date
+	,g.productHandoverDate as product_handover_date
+  from sw_information_system.sku a
+		LEFT JOIN sw_information_system.spu b
+			on a.spuId = b.spuId
+		LEFT JOIN sw_information_system.supplier c
+			on a.mainSupplierName = c.name
+		LEFT JOIN sw_information_system.package_infos d
+			on a.skuId = d.skuId
+		LEFT JOIN  sw_information_system.pim_shopify_sku k
+			on a.skuId = k.sku_id	
+		LEFT JOIN  
+			(SELECT 
+					g.*
+						from (SELECT f.*,
+				row_number() over(PARTITION by supplierName ) as name_tag	
+			from sw_information_system.supplier_contacts f
+			)g 
+				where g.name_tag =1 )
+			e
+    on c.name = e.supplierName	
+		LEFT JOIN sw_information_system.sub_poc f
+			on a.spuId = f.spuId
+		LEFT JOIN 
+			poc_information g
+			on a.spuId = g.spuId
+			LEFT JOIN
+			mingdao.employee h
+			on g.operatorMainStarfish =h.employeeName
+			LEFT JOIN 
+			mingdao.employee i
+			on g.operatorSubStarfish = i.employeeName
+			LEFT JOIN 
+			mingdao.employee j
+			on g.operatorPerfPoc = j.employeeName
+			LEFT JOIN
+			mingdao.employee p
+			on g.productMainStarfish = p.employeeName
+			LEFT JOIN
+			mingdao.employee l
+			on g.productSubStarfish = l.employeeName
+			LEFT JOIN
+			mingdao.employee m
+			on g.productPerfPoc = m.employeeName
+			LEFT JOIN
+			mingdao.employee n
+			on b.operatorPoc = n.employeeName
+			LEFT JOIN
+			mingdao.employee o
+			on b.productPoc = o.employeeName
+		WHERE a.isUnavailable ="否" or a.isUnavailable is null
+		;
